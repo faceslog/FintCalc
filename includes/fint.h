@@ -3,9 +3,11 @@
 
 #include <iostream>
 #include <limits>
+#include <map>
 
 // choix d'un type entier non signé
 typedef unsigned long int int_t;
+typedef unsigned long int mult_t;
 
 // valeur maximum du type entier choisi
 static const int_t MAX_INT_T = std::numeric_limits<int_t>::max();
@@ -17,17 +19,17 @@ static const int_t MAX_INT_T = std::numeric_limits<int_t>::max();
 // qui respecte cette spécification.
 // ------------------------------------------------------------------
 class fint {
+
 public:
    // constructeur à partir d'un entier n >= 1
-   // fint(int_t n);
+   fint(int_t n);
 
    // constructeur à partir d'une liste de facteurs premiers lf
    // et d'une liste de multiplicité lm telles que lm et lf ont la
    // même taille et lm[i]>0 est la multiplicité de lf[i] pour tout i
    // exemple d'appel de ce constructeur :
    // fint f({2,5,11}, {1,2,2});
-   // fint(const std::initializer_list<int_t>& lf,
-   //     const std::initializer_list<mult_t>& lm);
+   //fint(const std::initializer_list<int_t>& lf, const std::initializer_list<mult_t>& lm);
 
    // destructeur
    // ~fint();
@@ -61,9 +63,10 @@ public:
    // friend fint pow(const fint& a, unsigned int n);
 
    // écriture de a sur un flot de sortie
-   // friend std::ostream& operator<<(std::ostream& os, const fint& a);
+   //friend std::ostream& operator<<(std::ostream& os, const fint& a);
 
 private:
+    //std::map<int_t, mult_t> dico;
 
 };
 
