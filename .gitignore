@@ -1,0 +1,8 @@
+out/
+.idea/
+.classpath
+.project
+bin/
+cmake-build-debug/
+.vs
+.vscode
