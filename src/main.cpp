@@ -1,53 +1,45 @@
 #include <cstdio>
+#include <map>
 
 int main()
 {
 
-    int compteur, Nombre, a, i, j;
-    int facteur[256];
-    int puissance[256];
-
-    i = 255;
-    do
-    {
-         puissance[i] = facteur[i] = 0;
-    }
-    while(--i >= 0);
-
+    int Nombre, a;
+    std::map<int, int> dico;
 
     printf("Entrez le nombre que vous voulez decomposer: ");
     scanf("%d",&Nombre);
 
-    j=0;
-    a=Nombre;
+    a = Nombre;
 
-    for(i=2; i<=Nombre; i++)
+    int temp_factor {0};
+
+    for(int i{2}; i <= Nombre; i++)
     {
         // Si le nombre est divisible par i alors
        if((a % i) == 0)
        {
-          // J'augmente j l'indice des puissances et facteurs
-          compteur = j; // Ce compteur retient la dernière valeur de j
-          facteur[j] = i;    // Le facteur est donc i
+           temp_factor = i;    // Le facteur est donc i
 
+          int temp_power {0};
           while((a % i) == 0)
           {
-              a= a / i;
-            puissance[j]++;
+              a = a / i;
+              temp_power++;
           }
 
-          j++;
+          dico.insert(std::make_pair(temp_factor, temp_power));
        }
-
     }
 
     printf("\n");
     printf("L'Écriture en facteurs premiers est :\n");
 
-    for(j=0; j<=compteur; j++)
+    for(auto const& elem : dico)
     {
-        printf("Il y a %d facteurs %d.\n",puissance[j],facteur[j]);
+        printf("Il y a %d puissance %d.\n", elem.first, elem.second);
     }
+
 
     printf("\n");
 
