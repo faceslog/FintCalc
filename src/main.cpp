@@ -4,9 +4,9 @@
 int main()
 {
 
-    int Nombre;
+    int_t Nombre;
     printf("Entrez le nombre que vous voulez decomposer: ");
-    scanf("%d",&Nombre);
+    scanf("%ld",&Nombre);
 
     fint f(Nombre);
 

@@ -1,7 +1,6 @@
 #ifndef FINT_H
 #define FINT_H
 
-#include <iostream>
 #include <limits>
 #include <map>
 
