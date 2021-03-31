@@ -3,6 +3,7 @@
 //
 
 #include "../includes/fint.h"
+#include <exception>
 
 fint::fint(int_t n)
 {
@@ -17,6 +18,18 @@ fint::fint(int_t n)
     if(n >= 2)
     {
         this->dico.insert(std::make_pair(n, 1));
+    }
+}
+
+fint::fint(const std::initializer_list<int_t>& lf, const std::initializer_list<mult_t>& lm)
+{
+    if (lf.size() != lm.size())
+    {
+        throw std::runtime_error("il manque des facteurs ou multiplicateurs.");
+    }
+    for (auto ilf = lf.begin(), ilm = lm.begin(); ilf != lf.end(); ilf++, ilm++)
+    {
+        dico.insert(std::make_pair(*ilf, *ilm));
     }
 }
 

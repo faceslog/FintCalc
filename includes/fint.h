@@ -29,7 +29,7 @@ public:
    // même taille et lm[i]>0 est la multiplicité de lf[i] pour tout i
    // exemple d'appel de ce constructeur :
    // fint f({2,5,11}, {1,2,2});
-   //fint(const std::initializer_list<int_t>& lf, const std::initializer_list<mult_t>& lm);
+   fint(const std::initializer_list<int_t>& lf, const std::initializer_list<mult_t>& lm);
 
    // destructeur
    // ~fint();
