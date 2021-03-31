@@ -65,8 +65,10 @@ public:
    // écriture de a sur un flot de sortie
    //friend std::ostream& operator<<(std::ostream& os, const fint& a);
 
+   std::map<int_t, mult_t> get_dico();
+
 private:
-    //std::map<int_t, mult_t> dico;
+    std::map<int_t, mult_t> dico;
 
 };
 
