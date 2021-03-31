@@ -69,7 +69,7 @@ public:
 
 private:
     std::map<int_t, mult_t> dico;
-
+    void add_to_dico(int_t& a, const int_t& i);
 };
 
 #endif

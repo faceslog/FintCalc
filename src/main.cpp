@@ -17,7 +17,6 @@ int main()
     {
         printf("Il y a %lu puissance %lu.\n", elem.first, elem.second);
     }
-    printf("\n");
 
     return 0;
 }

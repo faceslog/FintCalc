@@ -6,29 +6,36 @@
 
 fint::fint(int_t n)
 {
-    int a = n;
-    int_t temp_factor {0};
+   
+    this->add_to_dico(n, 2);
 
-    for(int i{2}; i <= n; i++)
+    for(int_t i{3}; i*i <= n; i+=2)
     {
-        // Si le nombre est divisible par i alors
-        if((a % i) == 0)
-        {
-            temp_factor = i;    // Le facteur est donc i
+        this->add_to_dico(n, i);
+    }
 
-            mult_t temp_power {0};
-            while((a % i) == 0)
-            {
-                a = a / i;
-                temp_power++;
-            }
-
-            this->dico.insert(std::make_pair(temp_factor, temp_power));
-        }
+    if(n >= 2)
+    {
+        this->dico.insert(std::make_pair(n, 1));
     }
 }
 
 std::map<int_t, mult_t> fint::get_dico()
 {
     return this->dico;
+}
+
+void fint::add_to_dico(int_t& a, const int_t& i)
+{
+    if((a % i) == 0)
+    {
+        mult_t temp_power {0};
+        while((a % i) == 0)
+        {
+            a = a / i;
+            temp_power++;
+        }
+
+        this->dico.insert(std::make_pair(i, temp_power));
+    }
 }
