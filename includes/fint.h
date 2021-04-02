@@ -31,16 +31,16 @@ public:
    fint(const std::initializer_list<int_t>& lf, const std::initializer_list<mult_t>& lm);
 
    // destructeur
-   // ~fint();
+   ~fint();
 
    // retourne la valeur décimale de this, throws std::overflow_error
-   // int_t to_int() const;
+   int_t to_int() const;
 
    // teste si this divise a
    // bool divides(const fint& a) const;
 
    // teste si this est premier
-   // bool is_prime() const;
+   bool is_prime() const;
 
    // comparaisons
    // friend bool operator==(const fint& a, const fint& b);

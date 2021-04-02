@@ -1,22 +1,26 @@
-#include <cstdio>
+#include <iostream>
 #include "../includes/fint.h"
 
 int main()
 {
 
     int_t Nombre;
-    printf("Entrez le nombre que vous voulez decomposer: ");
-    scanf("%ld",&Nombre);
+    std::cout << "Entrez le nombre que vous voulez decomposer: ";
+    std::cin >> Nombre;
 
     fint f(Nombre);
 
-    printf("\n");
-    printf("L'Écriture en facteurs premiers est :\n");
+    std::cout << std::endl;
+    std::cout << "L'Écriture en facteurs premiers est :" << std::endl;
 
     for(auto const& elem : f.get_dico())
     {
-        printf("Il y a %lu puissance %lu.\n", elem.first, elem.second);
+       std::cout << elem.first << "^" << elem.second << std::endl;
     }
+
+    std::cout << "fint to int_t : " <<  f.to_int() << std::endl;
+    std::cout << std::boolalpha;
+    std::cout << "fint is a prime number: " << f.is_prime() << std::endl;
 
     return 0;
 }
