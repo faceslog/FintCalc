@@ -26,9 +26,10 @@ int main()
     std::cout << "a == b : " << (a == b) << std::endl;
     std::cout << "a != b : " << (a != b) << std::endl;
 
-    fint l = lcm(a, b);
-    std::cout << "lcm(a, b):" << std::endl;
-    std::cout << l;
+    std::cout << "lcm(a, b) : " << lcm(a, b).to_int() << std::endl;
+    std::cout << lcm(a, b);
+    std::cout << "gcd(a, b) : " << gcd(a, b).to_int() << std::endl;
+    std::cout << gcd(a, b);
 
     return 0;
 }

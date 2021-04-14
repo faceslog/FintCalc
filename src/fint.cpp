@@ -119,6 +119,30 @@ fint lcm(const fint& a, const fint& b)
     return r;
 }
 
+fint gcd(const fint& a, const fint& b)
+{
+    fint r(1);
+    auto ia = a.dico.cbegin(), ib = b.dico.cbegin();
+    while (ia != a.dico.cend() && ib != b.dico.cend())
+    {
+        if (ia->first < ib->first)
+        {
+            ia++;
+        }
+        else if (ia->first > ib->first)
+        {
+            ib++;
+        }
+        else
+        {
+            r.dico.insert(r.dico.cend(), ia->second < ib->second ? *ia : *ib);
+            ia++;
+            ib++;
+        }
+    }
+    return r;
+}
+
 std::ostream& operator<<(std::ostream& os, const fint& a)
 {
     for(auto const& elem : a.dico)

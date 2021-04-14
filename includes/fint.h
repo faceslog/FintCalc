@@ -52,7 +52,7 @@ public:
     friend fint lcm(const fint& a, const fint& b);
 
     // retourne le plus grand diviseur commun de a et b
-    // friend fint gcd(const fint& a, const fint& b);
+    friend fint gcd(const fint& a, const fint& b);
 
     // retourne a * b
     // friend fint operator*(const fint& a, const fint& b);
