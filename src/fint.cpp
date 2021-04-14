@@ -143,6 +143,16 @@ fint gcd(const fint& a, const fint& b)
     return r;
 }
 
+fint pow(const fint& a, unsigned int n)
+{
+    fint r(1);
+    for (auto ia = a.dico.begin(); ia != a.dico.end(); ia++)
+    {
+        r.dico.insert(r.dico.cend(), std::make_pair(ia->first, ia->second * n));
+    }
+    return r;
+}
+
 std::ostream& operator<<(std::ostream& os, const fint& a)
 {
     for(auto const& elem : a.dico)

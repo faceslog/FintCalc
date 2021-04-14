@@ -32,6 +32,12 @@ int main()
     std::cout << gcd(a, b);
 
     std::cout << a.to_int() << '*' << b.to_int() << '=' << std::endl << (a*b) << std::endl;
+    
+    unsigned int n;
+    std::cout << "Entrez la puissance à utiliser : ";
+    std::cin >> n;
+    std::cout << "pow(a, n) : " << pow(a, n).to_int() << std::endl;
+    std::cout << pow(a, n);
 
     return 0;
 }
