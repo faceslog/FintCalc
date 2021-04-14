@@ -117,3 +117,15 @@ fint lcm(const fint& a, const fint& b)
     }
     return r;
 }
+
+std::ostream& operator<<(std::ostream& os, const fint& a)
+{
+    /*for(auto const& elem : a.dico)
+    {
+        os << elem.first << '^' << elem.second << '\n';
+    }*/
+
+    os << a.to_int();
+
+    return os;
+}

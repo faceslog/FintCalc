@@ -14,8 +14,9 @@ int main()
 
     for(auto const& elem : a.get_dico())
     {
-       std::cout << elem.first << "^" << elem.second << std::endl;
+        std::cout << elem.first << "^" << elem.second << std::endl;
     }
+    // std::cout << a;
 
     std::cout << "a.to_int() : " <<  a.to_int() << std::endl;
     std::cout << std::boolalpha;
@@ -27,7 +28,7 @@ int main()
     std::cout << "L'écriture en facteurs premiers est :" << std::endl;
     for(auto const& elem : b.get_dico())
     {
-       std::cout << elem.first << "^" << elem.second << std::endl;
+        std::cout << elem.first << "^" << elem.second << std::endl;
     }
 
     std::cout << "a == b : " << (a == b) << std::endl;
@@ -37,7 +38,7 @@ int main()
     std::cout << "lcm(a, b) :" << std::endl;
     for(auto const& elem : l.get_dico())
     {
-       std::cout << elem.first << "^" << elem.second << std::endl;
+        std::cout << elem.first << "^" << elem.second << std::endl;
     }
 
     return 0;

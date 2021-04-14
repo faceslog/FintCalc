@@ -64,7 +64,7 @@ public:
     // friend fint pow(const fint& a, unsigned int n);
 
     // écriture de a sur un flot de sortie
-    //friend std::ostream& operator<<(std::ostream& os, const fint& a);
+    friend std::ostream& operator<<(std::ostream& os, const fint& a);
 
     std::map<int_t, mult_t> get_dico() const;
 
