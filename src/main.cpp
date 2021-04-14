@@ -10,14 +10,8 @@ int main()
     fint a(Nombre);
 
     std::cout << std::endl;
-    std::cout << "L'écriture en facteurs premiers est :" << std::endl;
-
-    for(auto const& elem : a.get_dico())
-    {
-        std::cout << elem.first << "^" << elem.second << std::endl;
-    }
-    // std::cout << a;
-
+    std::cout << "L'écriture en facteurs premiers de a est :" << std::endl;
+    std::cout << a;
     std::cout << "a.to_int() : " <<  a.to_int() << std::endl;
     std::cout << std::boolalpha;
     std::cout << "a.is_prime() : " << a.is_prime() << std::endl;
@@ -25,21 +19,16 @@ int main()
     std::cout << "Entrez le second nombre avec lequel réaliser les calculs : ";
     std::cin >> Nombre;
     fint b(Nombre);
-    std::cout << "L'écriture en facteurs premiers est :" << std::endl;
-    for(auto const& elem : b.get_dico())
-    {
-        std::cout << elem.first << "^" << elem.second << std::endl;
-    }
+    std::cout << "L'écriture en facteurs premiers de b est :" << std::endl;
+    std::cout << b;
 
+    std::cout << "\nOpérations de comparaison: " << std::endl;
     std::cout << "a == b : " << (a == b) << std::endl;
     std::cout << "a != b : " << (a != b) << std::endl;
 
     fint l = lcm(a, b);
-    std::cout << "lcm(a, b) :" << std::endl;
-    for(auto const& elem : l.get_dico())
-    {
-        std::cout << elem.first << "^" << elem.second << std::endl;
-    }
+    std::cout << "lcm(a, b):" << std::endl;
+    std::cout << l;
 
     return 0;
 }
