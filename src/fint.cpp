@@ -5,6 +5,7 @@
 #include "../includes/fint.h"
 #include <cmath>
 #include <stdexcept>
+#include <iostream>
 
 fint::fint(int_t n)
 {
@@ -88,12 +89,11 @@ bool operator!=(const fint &a, const fint &b)
 
 std::ostream& operator<<(std::ostream& os, const fint& a)
 {
-    /*for(auto const& elem : a.dico)
+    for(auto const& elem : a.dico)
     {
-        os << elem.first << '^' << elem.second << '\n';
-    }*/
-
-    os << a.to_int();
+        // We need to flush the ostream, the std::endl is doing the flush
+        os << elem.first << '^' << elem.second <<  std::endl;
+    }
 
     return os;
 }
