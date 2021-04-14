@@ -33,6 +33,10 @@ fint::fint(const std::initializer_list<int_t>& lf, const std::initializer_list<m
     }
 }
 
+fint::fint(const fint& f): dico(f.dico) {}
+
+fint::~fint() = default;
+
 std::map<int_t, mult_t> fint::get_dico() const
 {
     return dico;
@@ -86,4 +90,30 @@ bool operator!=(const fint &a, const fint &b)
     return a.dico != b.dico;
 }
 
-fint::~fint() = default;
+fint lcm(const fint& a, const fint& b)
+{
+    fint r(1);
+    auto ia = a.dico.cbegin(), ib = b.dico.cbegin();
+    while (ia != a.dico.cend() && ib != b.dico.cend())
+    {
+        if (ia->first < ib->first || (ia->first == ib->first && ia->second > ib->second))
+        {
+            r.dico.insert(r.dico.cend(), *ia);
+            ia++;
+        }
+        else
+        {
+            r.dico.insert(r.dico.cend(), *ib);
+            ib++;
+        }
+    }
+    for (; ia != a.dico.cend(); ia++)
+    {
+        r.dico.insert(r.dico.cend(), *ia);
+    }
+    for (; ib != b.dico.cend(); ib++)
+    {
+        r.dico.insert(r.dico.cend(), *ib);
+    }
+    return r;
+}
