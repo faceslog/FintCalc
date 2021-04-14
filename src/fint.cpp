@@ -4,20 +4,20 @@
 
 #include "../includes/fint.h"
 #include <cmath>
+#include <stdexcept>
 
 fint::fint(int_t n)
 {
-   
-    this->add_to_dico(n, 2);
+    add_to_dico(n, 2);
 
     for(int_t i{3}; i*i <= n; i+=2)
     {
-        this->add_to_dico(n, i);
+        add_to_dico(n, i);
     }
 
     if(n >= 2)
     {
-        this->dico.insert(std::make_pair(n, 1));
+        dico.insert(dico.end(), std::make_pair(n, 1));
     }
 }
 
@@ -35,7 +35,7 @@ fint::fint(const std::initializer_list<int_t>& lf, const std::initializer_list<m
 
 std::map<int_t, mult_t> fint::get_dico()
 {
-    return this->dico;
+    return dico;
 }
 
 void fint::add_to_dico(int_t& a, const int_t& i)
@@ -49,17 +49,16 @@ void fint::add_to_dico(int_t& a, const int_t& i)
             temp_power++;
         }
 
-        this->dico.insert(std::make_pair(i, temp_power));
+        dico.insert(dico.end(), std::make_pair(i, temp_power));
     }
 }
 
 int_t fint::to_int() const {
-
     int_t a{1};
 
     for(auto const& elem : dico)
     {
-        int_t b = pow(elem.first, elem.second);
+        int_t b = std::pow(elem.first, elem.second);
 
         if( a > MAX_INT_T/b)
         {

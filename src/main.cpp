@@ -3,7 +3,6 @@
 
 int main()
 {
-
     int_t Nombre;
     std::cout << "Entrez le nombre que vous voulez decomposer: ";
     std::cin >> Nombre;
