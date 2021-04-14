@@ -22,7 +22,7 @@ int main()
     std::cout << "L'écriture en facteurs premiers de b est :" << std::endl;
     std::cout << b;
 
-    std::cout << "\nOpérations de comparaison: " << std::endl;
+    std::cout << "b.divides(a) : " << b.divides(a) << std::endl;
     std::cout << "a == b : " << (a == b) << std::endl;
     std::cout << "a != b : " << (a != b) << std::endl;
 
@@ -30,6 +30,9 @@ int main()
     std::cout << lcm(a, b);
     std::cout << "gcd(a, b) : " << gcd(a, b).to_int() << std::endl;
     std::cout << gcd(a, b);
+
+    std::cout << "a / b : " << (a / b).to_int() << std::endl;
+    std::cout << a / b;
 
     unsigned int n;
     std::cout << "Entrez la puissance à utiliser : ";

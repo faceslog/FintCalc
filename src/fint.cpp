@@ -76,7 +76,29 @@ int_t fint::to_int() const {
     return a;
 }
 
-bool fint::is_prime() const {
+bool fint::divides(const fint& a) const
+{
+    auto i = dico.cbegin();
+    for (auto ia = a.dico.cbegin(); ia != a.dico.cend() && i != dico.cend(); ia++)
+    {
+        if (ia->first < i->first)
+        {
+            continue;
+        }
+        if (ia->first > i->first || ia->second < i->second)
+        {
+            return false;
+        }
+        if (ia->first == i->first)
+        {
+            i++;
+        }
+    }
+    return i == dico.cend();
+}
+
+bool fint::is_prime() const
+{
     // Si il n'y a que un élément dans notre map et que la puissance de cet élément est 1 alors ce nombre est un nombre premier.
     return dico.size() == 1 && dico.begin()->second == 1;
 }
@@ -139,6 +161,33 @@ fint gcd(const fint& a, const fint& b)
             ia++;
             ib++;
         }
+    }
+    return r;
+}
+
+fint operator/(const fint& a, const fint& b)
+{
+    if (!b.divides(a))
+    {
+        throw std::domain_error("AAAAAAAAAAAAAAAAH");
+    }
+    fint r(1);
+    auto ia = a.dico.cbegin();
+    for (auto ib = b.dico.cbegin(); ib != b.dico.cend(); ia++)
+    {
+        if (ia->first < ib->first)
+        {
+            r.dico.insert(r.dico.cend(), *ia);
+        }
+        else
+        {
+            r.dico.insert(r.dico.cend(), std::make_pair(ia->first, ia->second - ib->second));
+            ib++;
+        }
+    }
+    for (; ia != a.dico.cend(); ia++)
+    {
+        r.dico.insert(r.dico.cend(), *ia);
     }
     return r;
 }
