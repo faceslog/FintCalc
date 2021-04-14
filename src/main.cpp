@@ -19,17 +19,19 @@ int main()
     std::cin >> Nombre;
     fint b(Nombre);
     std::cout << "L'écriture en facteurs premiers de b est :" << b << std::endl;
+    std::cout << "b.divides(a) : " << b.divides(a) << std::endl;
     std::cout << std::endl;
-
+    
     std::cout << "============= Operator overloading =============" << std::endl;
     std::cout << "a == b : " << (a == b) << "a != b : " << (a != b) << std::endl;
     std::cout << "a * b = " << (a*b) << std::endl;
-    std::cout << std::endl;
-
-    unsigned int n;
+    std::cout << "a / b = " << (a/b) << std::endl;
+    
+    uint32_t n;
     std::cout << "Entrez la puissance à utiliser : ";
     std::cin >> n;
     std::cout << "pow(a, n) = " << pow(a, n) << std::endl;
+    std::cout << std::endl;
 
     std::cout << "============= LCM & GCD =============" << std::endl;
     std::cout << "lcm(a, b) = " << lcm(a, b) << std::endl;

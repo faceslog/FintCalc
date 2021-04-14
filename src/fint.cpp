@@ -34,8 +34,7 @@ fint::fint(const std::initializer_list<int_t>& lf, const std::initializer_list<m
     }
 }
 
-fint::fint(const fint& f): dico(f.dico) {}
-
+fint::fint(const fint& f) = default;
 fint::~fint() = default;
 
 std::map<int_t, mult_t> fint::get_dico() const
@@ -63,7 +62,7 @@ int_t fint::to_int() const {
 
     for(auto const& elem : dico)
     {
-        int_t b = std::pow(elem.first, elem.second);
+        auto b = static_cast<int_t>(std::pow(elem.first, elem.second));
 
         if( a > MAX_INT_T/b)
         {
@@ -76,7 +75,29 @@ int_t fint::to_int() const {
     return a;
 }
 
-bool fint::is_prime() const {
+bool fint::divides(const fint& a) const
+{
+    auto i = dico.cbegin();
+    for (auto ia = a.dico.cbegin(); ia != a.dico.cend() && i != dico.cend(); ia++)
+    {
+        if (ia->first < i->first)
+        {
+            continue;
+        }
+        if (ia->first > i->first || ia->second < i->second)
+        {
+            return false;
+        }
+        if (ia->first == i->first)
+        {
+            i++;
+        }
+    }
+    return i == dico.cend();
+}
+
+bool fint::is_prime() const
+{
     // Si il n'y a que un élément dans notre map et que la puissance de cet élément est 1 alors ce nombre est un nombre premier.
     return dico.size() == 1 && dico.begin()->second == 1;
 }
@@ -146,10 +167,11 @@ fint gcd(const fint& a, const fint& b)
 fint pow(const fint& a, unsigned int n)
 {
     fint r(1);
-    for (auto ia = a.dico.begin(); ia != a.dico.end(); ia++)
+    for (auto ia : a.dico)
     {
-        r.dico.insert(r.dico.cend(), std::make_pair(ia->first, ia->second * n));
+        r.dico.insert(r.dico.cend(), std::make_pair(ia.first, ia.second * n));
     }
+
     return r;
 }
 
@@ -158,23 +180,25 @@ fint operator*(const fint &a, const fint &b)
     fint sum(1);
 
     auto ia = a.dico.cbegin(), ib = b.dico.cbegin();
+    
     while (ia != a.dico.cend() && ib != b.dico.cend())
     {
-        if (ia->first == ib->first)
+        if (ia->first < ib->first)
         {
-            // x^a * x^b = x^(a+b)
-            sum.dico.insert(sum.dico.end(), std::make_pair(ia->first, ia->second + ib->second));
-            ia++;
-            ib++;
-        }
-        else if(ia->first < ib->first)
-        {
-            sum.dico.insert(sum.dico.end(), std::make_pair(ia->first,  ia->second));
+           sum.dico.insert(sum.dico.end(), std::make_pair(ia->first,  ia->second));
             ia++;
         }
         else if(ia->first > ib->first)
         {
             sum.dico.insert(sum.dico.end(), std::make_pair(ib->first,  ib->second));
+            ib++;
+        }
+        else  
+        {
+            // Else they are equals 
+            // x^a * x^b = x^(a+b)
+            sum.dico.insert(sum.dico.end(), std::make_pair(ia->first, ia->second + ib->second));
+            ia++;
             ib++;
         }
     }
@@ -207,4 +231,35 @@ std::ostream& operator<<(std::ostream& os, const fint& a)
     os << ia->first << '^' << ia->second << std::flush;
 
     return os;
+}
+
+fint operator/(const fint& a, const fint& b)
+{
+    if (!b.divides(a))
+    {
+        throw std::domain_error("Error trying to divide the both fint");
+    }
+
+    fint r(1);
+    auto ia = a.dico.cbegin();
+
+    for (auto ib = b.dico.cbegin(); ib != b.dico.cend(); ia++)
+    {
+        if (ia->first < ib->first)
+        {
+            r.dico.insert(r.dico.cend(), *ia);
+        }
+        else
+        {
+            r.dico.insert(r.dico.cend(), std::make_pair(ia->first, ia->second - ib->second));
+            ib++;
+        }
+    }
+
+    for (; ia != a.dico.cend(); ia++)
+    {
+        r.dico.insert(r.dico.cend(), *ia);
+    }
+
+    return r;
 }

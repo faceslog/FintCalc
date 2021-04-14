@@ -39,7 +39,7 @@ public:
     int_t to_int() const;
 
     // teste si this divise a
-    // bool divides(const fint& a) const;
+    bool divides(const fint& a) const;
 
     // teste si this est premier
     bool is_prime() const;
@@ -58,7 +58,7 @@ public:
     friend fint operator*(const fint& a, const fint& b);
 
     // retourne a / b si b divise a, throws std::domain_error sinon
-    // friend fint operator/(const fint& a, const fint& b);
+    friend fint operator/(const fint& a, const fint& b);
 
     // retourne a puissance n
     friend fint pow(const fint& a, unsigned int n);
