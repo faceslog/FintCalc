@@ -31,5 +31,7 @@ int main()
     std::cout << "gcd(a, b) : " << gcd(a, b).to_int() << std::endl;
     std::cout << gcd(a, b);
 
+    std::cout << a.to_int() << '*' << b.to_int() << '=' << std::endl << (a*b) << std::endl;
+
     return 0;
 }
