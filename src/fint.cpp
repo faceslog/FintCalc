@@ -153,17 +153,6 @@ fint pow(const fint& a, unsigned int n)
     return r;
 }
 
-std::ostream& operator<<(std::ostream& os, const fint& a)
-{
-    for(auto const& elem : a.dico)
-    {
-        // We need to flush the ostream, the std::endl is doing the flush
-        os << elem.first << '^' << elem.second <<  std::endl;
-    }
-
-    return os;
-}
-
 fint operator*(const fint &a, const fint &b)
 {
     fint sum(1);
@@ -190,5 +179,32 @@ fint operator*(const fint &a, const fint &b)
         }
     }
 
+    for (; ia != a.dico.cend(); ia++)
+    {
+        sum.dico.insert(sum.dico.cend(), *ia);
+    }
+
+    for (; ib != b.dico.cend(); ib++)
+    {
+        sum.dico.insert(sum.dico.cend(), *ib);
+    }
+
     return sum;
+}
+
+std::ostream& operator<<(std::ostream& os, const fint& a)
+{
+    if(a.dico.empty()) return os << '1' << std::flush;
+
+    auto ia = a.dico.cbegin();
+    auto second_last = std::prev(a.dico.end(), 1);
+
+    for (; ia != second_last; ia++)
+    {
+        os << ia->first << '^' << ia->second << '*' <<  std::flush;
+    }
+    // to avoid the '*' for the last element of the map and only if the map is not empty
+    os << ia->first << '^' << ia->second << std::flush;
+
+    return os;
 }
