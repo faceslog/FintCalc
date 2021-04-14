@@ -31,9 +31,11 @@ int main()
     std::cout << "gcd(a, b) : " << gcd(a, b).to_int() << std::endl;
     std::cout << gcd(a, b);
 
+    std::cout << "a * b : " << (a * b).to_int() << std::endl;
+    std::cout << a * b;
     std::cout << "a / b : " << (a / b).to_int() << std::endl;
     std::cout << a / b;
-
+    
     unsigned int n;
     std::cout << "Entrez la puissance à utiliser : ";
     std::cin >> n;

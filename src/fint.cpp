@@ -165,6 +165,35 @@ fint gcd(const fint& a, const fint& b)
     return r;
 }
 
+fint operator*(const fint &a, const fint &b)
+{
+    fint sum(1);
+
+    auto ia = a.dico.cbegin(), ib = b.dico.cbegin();
+    while (ia != a.dico.cend() && ib != b.dico.cend())
+    {
+        if (ia->first == ib->first)
+        {
+            // x^a * x^b = x^(a+b)
+            sum.dico.insert(sum.dico.end(), std::make_pair(ia->first, ia->second + ib->second));
+            ia++;
+            ib++;
+        }
+        else if(ia->first < ib->first)
+        {
+            sum.dico.insert(sum.dico.end(), std::make_pair(ia->first,  ia->second));
+            ia++;
+        }
+        else if(ia->first > ib->first)
+        {
+            sum.dico.insert(sum.dico.end(), std::make_pair(ib->first,  ib->second));
+            ib++;
+        }
+    }
+
+    return sum;
+}
+
 fint operator/(const fint& a, const fint& b)
 {
     if (!b.divides(a))
