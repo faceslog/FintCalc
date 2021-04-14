@@ -20,51 +20,53 @@ static const int_t MAX_INT_T = std::numeric_limits<int_t>::max();
 class fint {
 
 public:
-   // constructeur à partir d'un entier n >= 1
-   fint(int_t n);
+    // constructeur à partir d'un entier n >= 1
+    fint(int_t n);
 
-   // constructeur à partir d'une liste de facteurs premiers lf
-   // et d'une liste de multiplicité lm telles que lm et lf ont la
-   // même taille et lm[i]>0 est la multiplicité de lf[i] pour tout i
-   // exemple d'appel de ce constructeur :
-   // fint f({2,5,11}, {1,2,2});
-   fint(const std::initializer_list<int_t>& lf, const std::initializer_list<mult_t>& lm);
+    // constructeur à partir d'une liste de facteurs premiers lf
+    // et d'une liste de multiplicité lm telles que lm et lf ont la
+    // même taille et lm[i]>0 est la multiplicité de lf[i] pour tout i
+    // exemple d'appel de ce constructeur :
+    // fint f({2,5,11}, {1,2,2});
+    fint(const std::initializer_list<int_t>& lf, const std::initializer_list<mult_t>& lm);
 
-   // destructeur
-   ~fint();
+    fint(const fint& f);
 
-   // retourne la valeur décimale de this, throws std::overflow_error
-   int_t to_int() const;
+    // destructeur
+    ~fint();
 
-   // teste si this divise a
-   // bool divides(const fint& a) const;
+    // retourne la valeur décimale de this, throws std::overflow_error
+    int_t to_int() const;
 
-   // teste si this est premier
-   bool is_prime() const;
+    // teste si this divise a
+    // bool divides(const fint& a) const;
 
-   // comparaisons
-   friend bool operator==(const fint& a, const fint& b);
-   friend bool operator!=(const fint& a, const fint& b);
-   
-   // retourne le plus petit commun multiple de a et b
-   // friend fint lcm(const fint& a, const fint& b);
+    // teste si this est premier
+    bool is_prime() const;
 
-   // retourne le plus grand diviseur commun de a et b
-   // friend fint gcd(const fint& a, const fint& b);
+    // comparaisons
+    friend bool operator==(const fint& a, const fint& b);
+    friend bool operator!=(const fint& a, const fint& b);
 
-   // retourne a * b
-   // friend fint operator*(const fint& a, const fint& b);
+    // retourne le plus petit commun multiple de a et b
+    friend fint lcm(const fint& a, const fint& b);
 
-   // retourne a / b si b divise a, throws std::domain_error sinon
-   // friend fint operator/(const fint& a, const fint& b);
+    // retourne le plus grand diviseur commun de a et b
+    // friend fint gcd(const fint& a, const fint& b);
 
-   // retourne a puissance n
-   // friend fint pow(const fint& a, unsigned int n);
+    // retourne a * b
+    // friend fint operator*(const fint& a, const fint& b);
 
-   // écriture de a sur un flot de sortie
-   friend std::ostream& operator<<(std::ostream& os, const fint& a);
+    // retourne a / b si b divise a, throws std::domain_error sinon
+    // friend fint operator/(const fint& a, const fint& b);
 
-   std::map<int_t, mult_t> get_dico() const;
+    // retourne a puissance n
+    // friend fint pow(const fint& a, unsigned int n);
+
+    // écriture de a sur un flot de sortie
+    friend std::ostream& operator<<(std::ostream& os, const fint& a);
+
+    std::map<int_t, mult_t> get_dico() const;
 
 private:
     std::map<int_t, mult_t> dico;
