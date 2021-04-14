@@ -12,10 +12,7 @@ int main()
     std::cout << std::endl;
     std::cout << "L'Écriture en facteurs premiers est :" << std::endl;
 
-    for(auto const& elem : f.get_dico())
-    {
-       std::cout << elem.first << "^" << elem.second << std::endl;
-    }
+    std::cout << f;
 
     std::cout << "fint to int_t : " <<  f.to_int() << std::endl;
     std::cout << std::boolalpha;
