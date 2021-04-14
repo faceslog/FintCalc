@@ -61,7 +61,7 @@ public:
     // friend fint operator/(const fint& a, const fint& b);
 
     // retourne a puissance n
-    // friend fint pow(const fint& a, unsigned int n);
+    friend fint pow(const fint& a, unsigned int n);
 
     // écriture de a sur un flot de sortie
     friend std::ostream& operator<<(std::ostream& os, const fint& a);
