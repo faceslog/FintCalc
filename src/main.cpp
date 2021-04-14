@@ -21,12 +21,12 @@ int main()
     std::cout << "Écriture en facteurs premiers de b est: " << b << std::endl;
     std::cout << "b.divides(a) : " << b.divides(a) << std::endl;
     std::cout << std::endl;
-    
+
     std::cout << "============= Operator overloading =============" << std::endl;
     std::cout << "a == b : " << (a == b) << " & a != b : " << (a != b) << std::endl;
     std::cout << "a * b = " << (a*b) << std::endl;
     std::cout << "a / b = " << (a/b) << std::endl;
-    
+
     uint32_t n;
     std::cout << "Entrez la puissance à utiliser : ";
     std::cin >> n;

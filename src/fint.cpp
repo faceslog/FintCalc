@@ -24,11 +24,11 @@ fint::fint(int_t n)
 
 fint::fint(const std::initializer_list<int_t>& lf, const std::initializer_list<mult_t>& lm)
 {
-    if (lf.size() != lm.size())
+    if(lf.size() != lm.size())
     {
         throw std::runtime_error("il manque des facteurs ou multiplicateurs.");
     }
-    for (auto ilf = lf.begin(), ilm = lm.begin(); ilf != lf.end(); ilf++, ilm++)
+    for(auto ilf = lf.begin(), ilm = lm.begin(); ilf != lf.end(); ilf++, ilm++)
     {
         dico.insert(dico.end(), std::make_pair(*ilf, *ilm));
     }
@@ -78,17 +78,17 @@ int_t fint::to_int() const {
 bool fint::divides(const fint& a) const
 {
     auto i = dico.cbegin();
-    for (auto ia = a.dico.cbegin(); ia != a.dico.cend() && i != dico.cend(); ia++)
+    for(auto ia = a.dico.cbegin(); ia != a.dico.cend() && i != dico.cend(); ia++)
     {
-        if (ia->first < i->first)
+        if(ia->first < i->first)
         {
             continue;
         }
-        if (ia->first > i->first || ia->second < i->second)
+        if(ia->first > i->first || ia->second < i->second)
         {
             return false;
         }
-        if (ia->first == i->first)
+        if(ia->first == i->first)
         {
             i++;
         }
@@ -104,7 +104,7 @@ bool fint::is_prime() const
 
 bool operator==(const fint& a, const fint &b)
 {
-    return a.dico == b.dico ;
+    return a.dico == b.dico;
 }
 
 bool operator!=(const fint &a, const fint &b)
@@ -116,9 +116,9 @@ fint lcm(const fint& a, const fint& b)
 {
     fint r(1);
     auto ia = a.dico.cbegin(), ib = b.dico.cbegin();
-    while (ia != a.dico.cend() && ib != b.dico.cend())
+    while(ia != a.dico.cend() && ib != b.dico.cend())
     {
-        if (ia->first < ib->first || (ia->first == ib->first && ia->second > ib->second))
+        if(ia->first < ib->first || (ia->first == ib->first && ia->second > ib->second))
         {
             r.dico.insert(r.dico.cend(), *ia);
             ia++;
@@ -129,11 +129,11 @@ fint lcm(const fint& a, const fint& b)
             ib++;
         }
     }
-    for (; ia != a.dico.cend(); ia++)
+    for(; ia != a.dico.cend(); ia++)
     {
         r.dico.insert(r.dico.cend(), *ia);
     }
-    for (; ib != b.dico.cend(); ib++)
+    for(; ib != b.dico.cend(); ib++)
     {
         r.dico.insert(r.dico.cend(), *ib);
     }
@@ -144,13 +144,13 @@ fint gcd(const fint& a, const fint& b)
 {
     fint r(1);
     auto ia = a.dico.cbegin(), ib = b.dico.cbegin();
-    while (ia != a.dico.cend() && ib != b.dico.cend())
+    while(ia != a.dico.cend() && ib != b.dico.cend())
     {
-        if (ia->first < ib->first)
+        if(ia->first < ib->first)
         {
             ia++;
         }
-        else if (ia->first > ib->first)
+        else if(ia->first > ib->first)
         {
             ib++;
         }
@@ -167,11 +167,10 @@ fint gcd(const fint& a, const fint& b)
 fint pow(const fint& a, unsigned int n)
 {
     fint r(1);
-    for (auto ia : a.dico)
+    for(auto const& ia : a.dico)
     {
         r.dico.insert(r.dico.cend(), std::make_pair(ia.first, ia.second * n));
     }
-
     return r;
 }
 
@@ -180,10 +179,10 @@ fint operator*(const fint &a, const fint &b)
     fint sum(1);
 
     auto ia = a.dico.cbegin(), ib = b.dico.cbegin();
-    
-    while (ia != a.dico.cend() && ib != b.dico.cend())
+
+    while(ia != a.dico.cend() && ib != b.dico.cend())
     {
-        if (ia->first < ib->first)
+        if(ia->first < ib->first)
         {
            sum.dico.insert(sum.dico.end(), std::make_pair(ia->first,  ia->second));
             ia++;
@@ -193,9 +192,9 @@ fint operator*(const fint &a, const fint &b)
             sum.dico.insert(sum.dico.end(), std::make_pair(ib->first,  ib->second));
             ib++;
         }
-        else  
+        else
         {
-            // Else they are equals 
+            // Else they are equals
             // x^a * x^b = x^(a+b)
             sum.dico.insert(sum.dico.end(), std::make_pair(ia->first, ia->second + ib->second));
             ia++;
@@ -203,12 +202,12 @@ fint operator*(const fint &a, const fint &b)
         }
     }
 
-    for (; ia != a.dico.cend(); ia++)
+    for(; ia != a.dico.cend(); ia++)
     {
         sum.dico.insert(sum.dico.cend(), *ia);
     }
 
-    for (; ib != b.dico.cend(); ib++)
+    for(; ib != b.dico.cend(); ib++)
     {
         sum.dico.insert(sum.dico.cend(), *ib);
     }
@@ -216,26 +215,9 @@ fint operator*(const fint &a, const fint &b)
     return sum;
 }
 
-std::ostream& operator<<(std::ostream& os, const fint& a)
-{
-    if(a.dico.empty()) return os << '1' << std::flush;
-
-    auto ia = a.dico.cbegin();
-    auto second_last = std::prev(a.dico.end(), 1);
-
-    for (; ia != second_last; ia++)
-    {
-        os << ia->first << '^' << ia->second << '*' <<  std::flush;
-    }
-    // to avoid the '*' for the last element of the map and only if the map is not empty
-    os << ia->first << '^' << ia->second << std::flush;
-
-    return os;
-}
-
 fint operator/(const fint& a, const fint& b)
 {
-    if (!b.divides(a))
+    if(!b.divides(a))
     {
         throw std::domain_error("Error trying to divide the both fint");
     }
@@ -243,9 +225,9 @@ fint operator/(const fint& a, const fint& b)
     fint r(1);
     auto ia = a.dico.cbegin();
 
-    for (auto ib = b.dico.cbegin(); ib != b.dico.cend(); ia++)
+    for(auto ib = b.dico.cbegin(); ib != b.dico.cend(); ia++)
     {
-        if (ia->first < ib->first)
+        if(ia->first < ib->first)
         {
             r.dico.insert(r.dico.cend(), *ia);
         }
@@ -256,10 +238,27 @@ fint operator/(const fint& a, const fint& b)
         }
     }
 
-    for (; ia != a.dico.cend(); ia++)
+    for(; ia != a.dico.cend(); ia++)
     {
         r.dico.insert(r.dico.cend(), *ia);
     }
 
     return r;
+}
+
+std::ostream& operator<<(std::ostream& os, const fint& a)
+{
+    if(a.dico.empty()) return os << '1' << std::flush;
+
+    auto ia = a.dico.cbegin();
+    auto second_last = std::prev(a.dico.end(), 1);
+
+    for(; ia != second_last; ia++)
+    {
+        os << ia->first << '^' << ia->second << '*' <<  std::flush;
+    }
+    // to avoid the '*' for the last element of the map and only if the map is not empty
+    os << ia->first << '^' << ia->second << std::flush;
+
+    return os;
 }
