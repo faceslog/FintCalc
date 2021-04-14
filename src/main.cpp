@@ -21,5 +21,12 @@ int main()
     std::cout << std::boolalpha;
     std::cout << "fint is a prime number: " << f.is_prime() << std::endl;
 
+    fint a(25000);
+    fint b(25000);
+
+    std::cout << "a == b: " << (a == b) << std::endl;
+    std::cout << "a != b: " << (a != b) << std::endl;
+
+
     return 0;
 }

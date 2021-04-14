@@ -43,8 +43,8 @@ public:
    bool is_prime() const;
 
    // comparaisons
-   // friend bool operator==(const fint& a, const fint& b);
-   // friend bool operator!=(const fint& a, const fint& b);
+   friend bool operator==(const fint& a, const fint& b);
+   friend bool operator!=(const fint& a, const fint& b);
    
    // retourne le plus petit commun multiple de a et b
    // friend fint lcm(const fint& a, const fint& b);
@@ -64,7 +64,7 @@ public:
    // écriture de a sur un flot de sortie
    //friend std::ostream& operator<<(std::ostream& os, const fint& a);
 
-   std::map<int_t, mult_t> get_dico();
+   std::map<int_t, mult_t> get_dico() const;
 
 private:
     std::map<int_t, mult_t> dico;

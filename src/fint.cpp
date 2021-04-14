@@ -29,11 +29,11 @@ fint::fint(const std::initializer_list<int_t>& lf, const std::initializer_list<m
     }
     for (auto ilf = lf.begin(), ilm = lm.begin(); ilf != lf.end(); ilf++, ilm++)
     {
-        dico.insert(std::make_pair(*ilf, *ilm));
+        dico.insert(dico.end(), std::make_pair(*ilf, *ilm));
     }
 }
 
-std::map<int_t, mult_t> fint::get_dico()
+std::map<int_t, mult_t> fint::get_dico() const
 {
     return dico;
 }
@@ -74,6 +74,16 @@ int_t fint::to_int() const {
 bool fint::is_prime() const {
     // Si il n'y a que un élément dans notre map et que la puissance de cet élément est 1 alors ce nombre est un nombre premier.
     return dico.size() == 1 && dico.begin()->second == 1;
+}
+
+bool operator==(const fint& a, const fint &b)
+{
+    return a.dico == b.dico ;
+}
+
+bool operator!=(const fint &a, const fint &b)
+{
+    return a.dico != b.dico;
 }
 
 fint::~fint() = default;
