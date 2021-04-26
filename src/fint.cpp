@@ -184,12 +184,12 @@ fint operator*(const fint &a, const fint &b)
     {
         if(ia->first < ib->first)
         {
-           sum.dico.insert(sum.dico.end(), std::make_pair(ia->first,  ia->second));
+            sum.dico.insert(sum.dico.end(), *ia);
             ia++;
         }
         else if(ia->first > ib->first)
         {
-            sum.dico.insert(sum.dico.end(), std::make_pair(ib->first,  ib->second));
+            sum.dico.insert(sum.dico.end(), *ib);
             ib++;
         }
         else
