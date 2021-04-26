@@ -56,12 +56,19 @@ public:
 
     // retourne a * b
     friend fint operator*(const fint& a, const fint& b);
+    fint& operator*=(const fint& b);
 
     // retourne a / b si b divise a, throws std::domain_error sinon
     friend fint operator/(const fint& a, const fint& b);
+    fint& operator/=(const fint& b);
+
+    // retourne a % b si b divise a, throws std::domain_error sinon
+    //friend fint operator%(const fint& a, const fint& b);
+    //fint& operator%=(const fint& b);
 
     // retourne a puissance n
     friend fint pow(const fint& a, unsigned int n);
+    fint& pow(unsigned int n);
 
     // écriture de a sur un flot de sortie
     friend std::ostream& operator<<(std::ostream& os, const fint& a);
