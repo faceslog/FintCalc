@@ -45,6 +45,7 @@ void Controller::ParseResult(fint& fint_a)
                 break;
             case Buttons_Pow:
                 DrawResultPow(fint_a);
+                break;
             case Buttons_CopyAsFint:
             {
                 ImGui::LogToClipboard();
@@ -84,17 +85,16 @@ void Controller::DrawGui()
 Controller::Controller()
 {
     this->toggled = Buttons_None;
+    this->b = 1;
 }
 
 void Controller::DrawResultIsPrime(fint &fint_a)
 {
-    ImGui::BulletText("%s", fint_a.is_prime() ? "true" : "false");
+    ImGui::BulletText("%s", fint_a.is_prime() ? "A is a prime number" : "A not a prime Number");
 }
 
 void Controller::DrawResultGcd(fint &fint_a)
 {
-    static unsigned long b = 1;
-
     try
     {
         fint fint_b(b);
@@ -110,8 +110,6 @@ void Controller::DrawResultGcd(fint &fint_a)
 
 void Controller::DrawResultLcm(fint &fint_a)
 {
-    static unsigned long b = 1;
-
     try
     {
         fint fint_b(b);
@@ -128,8 +126,6 @@ void Controller::DrawResultLcm(fint &fint_a)
 
 void Controller::DrawResultMult(fint &fint_a)
 {
-    static unsigned long b = 1;
-
     try
     {
         fint fint_b(b);
@@ -145,8 +141,6 @@ void Controller::DrawResultMult(fint &fint_a)
 
 void Controller::DrawResultDiv(fint &fint_a)
 {
-    static unsigned long b = 1;
-
     try
     {
         fint fint_b(b);
@@ -167,13 +161,9 @@ void Controller::DrawResultDiv(fint &fint_a)
 
 void Controller::DrawResultPow(fint &fint_a)
 {
-    static unsigned long b = 1;
-
     try
     {
-        fint fint_b(b);
-        ImGui::Text("b: %s", fint_b.to_string().c_str());
-        ImGui::InputScalar("b", ImGuiDataType_U32, &b);
+        ImGui::InputScalar("B", ImGuiDataType_U32, &b);
         ImGui::BulletText("A^b = %s", fint_a.pow(b).to_string().c_str());
     }
     catch (std::domain_error& error)

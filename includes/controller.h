@@ -29,15 +29,18 @@ public:
 
 private:
     static void DrawResultIsPrime(fint& fint_a);
-    static void DrawResultGcd(fint& fint_a);
-    static void DrawResultLcm(fint& fint_a);
-    static void DrawResultMult(fint& fint_a);
-    static void DrawResultDiv(fint& fint_a);
-    static void DrawResultPow(fint& fint_a);
+    void DrawResultGcd(fint& fint_a);
+    void DrawResultLcm(fint& fint_a);
+    void DrawResultMult(fint& fint_a);
+    void DrawResultDiv(fint& fint_a);
+    void DrawResultPow(fint& fint_a);
 
-    Buttons toggled;
     void ParseResult(fint& fint_a);
     void DrawButtons();
+
+    Buttons toggled;
+    unsigned long b {1};
+
 };
 
 #endif
