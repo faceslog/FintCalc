@@ -311,19 +311,26 @@ fint& fint::pow(unsigned int n)
     return *this;
 }
 
-std::ostream& operator<<(std::ostream& os, const fint& a)
+std::ostream& operator<<(std::ostream& os, fint& a)
 {
-    if(a.dico.empty()) return os << '1' << std::flush;
+    return os << a.to_string();
+}
 
-    auto ia = a.dico.cbegin();
-    auto second_last = std::prev(a.dico.end(), 1);
+std::string fint::to_string()
+{
+
+    if(dico.empty()) return "1";
+
+    std::string str;
+    auto ia = dico.cbegin();
+    auto second_last = std::prev(dico.end(), 1);
 
     for(; ia != second_last; ia++)
     {
-        os << ia->first << '^' << ia->second << '*' <<  std::flush;
+        str += std::to_string(ia->first) + '^' + std::to_string(ia->second) + '*';
     }
     // to avoid the '*' for the last element of the map and only if the map is not empty
-    os << ia->first << '^' << ia->second << std::flush;
+    str += std::to_string(ia->first) + '^' + std::to_string(ia->second);
 
-    return os;
+    return str;
 }
