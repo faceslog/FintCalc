@@ -13,8 +13,8 @@
 
 #include "../includes/controller.h"
 
-static const int windowWidth = 400;
-static const int windowHeight = 350;
+static const int windowWidth = 500;
+static const int windowHeight = 300;
 
 int main()
 {

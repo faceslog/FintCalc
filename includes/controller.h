@@ -24,13 +24,20 @@ class Controller {
 
 public:
     Controller();
-    void DrawResult(fint& fint_a);
-    void DrawButtons();
     void DrawGui();
     ~Controller();
 
 private:
+    static void DrawResultIsPrime(fint& fint_a);
+    static void DrawResultGcd(fint& fint_a);
+    static void DrawResultLcm(fint& fint_a);
+    static void DrawResultMult(fint& fint_a);
+    static void DrawResultDiv(fint& fint_a);
+    static void DrawResultPow(fint& fint_a);
+
     Buttons toggled;
+    void ParseResult(fint& fint_a);
+    void DrawButtons();
 };
 
 #endif
