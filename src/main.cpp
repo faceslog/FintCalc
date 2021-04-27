@@ -5,7 +5,6 @@
 // SDL
 #include <glad/glad.h>
 #include <SDL.h>
-
 // Dear ImGui
 #include "../imgui/imgui.h"
 #include "../imgui/imgui_impl_sdl.h"
@@ -124,8 +123,6 @@ int main()
 
         // a window is defined by Begin/End pair
         {
-
-
             int sdl_width = 0, sdl_height = 0;
             // get the window size as a base for calculating widgets geometry
             SDL_GetWindowSize(window, &sdl_width, &sdl_height);
