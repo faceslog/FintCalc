@@ -70,10 +70,11 @@ public:
     friend fint pow(const fint& a, unsigned int n);
     fint& pow(unsigned int n);
 
-    // écriture de a sur un flot de sortie
-    friend std::ostream& operator<<(std::ostream& os, const fint& a);
+    // Converti un fint en string
+    std::string to_string();
 
-    std::map<int_t, mult_t> get_dico() const;
+    // écriture de a sur un flot de sortie
+    friend std::ostream& operator<<(std::ostream& os, fint& a);
 
 private:
     std::map<int_t, mult_t> dico;
