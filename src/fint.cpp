@@ -33,24 +33,6 @@ fint::fint(const std::initializer_list<int_t>& lf, const std::initializer_list<m
     }
 }
 
-fint::fint(const fint& f) = default;
-fint::~fint() = default;
-
-void fint::add_to_dico(int_t& a, const int_t& i)
-{
-    if((a % i) == 0)
-    {
-        mult_t temp_power {0};
-        while((a % i) == 0)
-        {
-            a = a / i;
-            temp_power++;
-        }
-
-        dico.insert(dico.end(), std::make_pair(i, temp_power));
-    }
-}
-
 int_t fint::to_int() const {
     int_t a{1};
 
@@ -359,11 +341,6 @@ fint& fint::pow(unsigned int n)
     return *this;
 }
 
-std::ostream& operator<<(std::ostream& os, const fint& a)
-{
-    return os << a.to_string();
-}
-
 std::string fint::to_string() const
 {
     if(dico.empty()) return "1";
@@ -380,4 +357,26 @@ std::string fint::to_string() const
     str += std::to_string(ia->first) + '^' + std::to_string(ia->second);
 
     return str;
+}
+
+std::ostream& operator<<(std::ostream& os, const fint& a)
+{
+    return os << a.to_string();
+}
+
+fint::~fint() = default;
+
+void fint::add_to_dico(int_t& a, const int_t& i)
+{
+    if((a % i) == 0)
+    {
+        mult_t temp_power {0};
+        while((a % i) == 0)
+        {
+            a = a / i;
+            temp_power++;
+        }
+
+        dico.insert(dico.end(), std::make_pair(i, temp_power));
+    }
 }

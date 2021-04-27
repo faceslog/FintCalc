@@ -30,17 +30,10 @@ public:
     // fint f({2,5,11}, {1,2,2});
     fint(const std::initializer_list<int_t>& lf, const std::initializer_list<mult_t>& lm);
 
-    fint(const fint& f);
-
-    // destructeur
-    ~fint();
-
     // retourne la valeur décimale de this, throws std::overflow_error
     int_t to_int() const;
-
     // teste si this divise a
     bool divides(const fint& a) const;
-
     // teste si this est premier
     bool is_prime() const;
 
@@ -73,6 +66,9 @@ public:
 
     // écriture de a sur un flot de sortie
     friend std::ostream& operator<<(std::ostream& os, const fint& a);
+
+    // destructeur par défaut
+    ~fint();
 
 private:
     std::map<int_t, mult_t> dico;
