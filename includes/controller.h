@@ -1,5 +1,5 @@
 //
-// Created by faces on 27/04/2021.
+// Created by CHABANE Hugo on 27/04/2021.
 //
 
 #ifndef FINTCALC_CONTROLLER_H
@@ -27,9 +27,10 @@ public:
     void DrawResult(fint& fint_a);
     void DrawButtons();
     void DrawGui();
+    ~Controller();
 
 private:
     Buttons toggled;
 };
 
-#endif //FINTCALC_CONTROLLER_H
+#endif

@@ -112,3 +112,5 @@ Controller::Controller()
 {
     this->toggled = Buttons_None;
 }
+
+Controller::~Controller() = default;
