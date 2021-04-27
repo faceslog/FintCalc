@@ -1,11 +1,10 @@
 //
-// Created by CHABANE Hugo et Adrien Lesénéchal on 17/03/2021.
+// Created by CHABANE Hugo et Adrien LESENECHAL on 17/03/2021.
 //
 
 #include "../includes/fint.h"
 #include <cmath>
 #include <stdexcept>
-#include <iostream>
 
 fint::fint(int_t n)
 {
@@ -36,11 +35,6 @@ fint::fint(const std::initializer_list<int_t>& lf, const std::initializer_list<m
 
 fint::fint(const fint& f) = default;
 fint::~fint() = default;
-
-std::map<int_t, mult_t> fint::get_dico() const
-{
-    return dico;
-}
 
 void fint::add_to_dico(int_t& a, const int_t& i)
 {

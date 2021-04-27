@@ -12,7 +12,6 @@
 #include "../imgui/imgui_impl_opengl3.h"
 
 #include "../includes/controller.h"
-#include <iostream>
 
 static const int windowWidth = 400;
 static const int windowHeight = 350;
