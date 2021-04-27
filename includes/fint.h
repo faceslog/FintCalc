@@ -50,9 +50,11 @@ public:
 
     // retourne le plus petit commun multiple de a et b
     friend fint lcm(const fint& a, const fint& b);
+    fint& lcm(const fint& b);
 
     // retourne le plus grand diviseur commun de a et b
     friend fint gcd(const fint& a, const fint& b);
+    fint& gcd(const fint& b);
 
     // retourne a * b
     friend fint operator*(const fint& a, const fint& b);
@@ -61,10 +63,6 @@ public:
     // retourne a / b si b divise a, throws std::domain_error sinon
     friend fint operator/(const fint& a, const fint& b);
     fint& operator/=(const fint& b);
-
-    // retourne a % b si b divise a, throws std::domain_error sinon
-    //friend fint operator%(const fint& a, const fint& b);
-    //fint& operator%=(const fint& b);
 
     // retourne a puissance n
     friend fint pow(const fint& a, unsigned int n);

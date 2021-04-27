@@ -140,6 +140,29 @@ fint lcm(const fint& a, const fint& b)
     return r;
 }
 
+fint& fint::lcm(const fint& b)
+{
+    auto i = dico.begin();
+    auto ib = b.dico.cbegin();
+    while(i != dico.end() && ib != b.dico.cend())
+    {
+        if(i->first < ib->first || (i->first == ib->first && i->second > ib->second))
+        {
+            i++;
+        }
+        else
+        {
+            dico.insert(i, *ib);
+            ib++;
+        }
+    }
+    for(; ib != b.dico.cend(); ib++)
+    {
+        dico.insert(dico.cend(), *ib);
+    }
+    return *this;
+}
+
 fint gcd(const fint& a, const fint& b)
 {
     fint r(1);
@@ -162,6 +185,33 @@ fint gcd(const fint& a, const fint& b)
         }
     }
     return r;
+}
+
+fint& fint::gcd(const fint& b)
+{
+    auto i = dico.begin();
+    auto ib = b.dico.cbegin();
+    while(i != dico.end() && ib != b.dico.cend())
+    {
+        if(i->first < ib->first)
+        {
+            i = dico.erase(i);
+        }
+        else if(i->first > ib->first)
+        {
+            ib++;
+        }
+        else
+        {
+            if (i->second > ib->second)
+            {
+                i->second = ib->second;
+            }
+            i++;
+            ib++;
+        }
+    }
+    return *this;
 }
 
 fint operator*(const fint &a, const fint &b)
@@ -248,12 +298,13 @@ fint operator/(const fint& a, const fint& b)
         {
             r.dico.insert(r.dico.cend(), *ia);
         }
+        else if(ia->second > ib->second)
+        {
+            r.dico.insert(r.dico.cend(), std::make_pair(ia->first, ia->second - ib->second));
+            ib++;
+        }
         else
         {
-            if(ia->second > ib->second)
-            {
-                r.dico.insert(r.dico.cend(), std::make_pair(ia->first, ia->second - ib->second));
-            }
             ib++;
         }
     }
@@ -273,21 +324,24 @@ fint& fint::operator/=(const fint& b)
         throw std::domain_error("Error trying to divide the both fint");
     }
     auto i = dico.begin();
-    for(auto ib = b.dico.cbegin(); ib != b.dico.cend(); i++)
+    auto ib = b.dico.cbegin();
+    while(ib != b.dico.cend())
     {
         if(i->first < ib->first)
         {
-            continue;
+            i++;
         }
-        if(i->second > ib->second)
+        else if(i->second > ib->second)
         {
             i->second -= ib->second;
+            i++;
+            ib++;
         }
         else
         {
-            dico.erase(i);
+            i = dico.erase(i);
+            ib++;
         }
-        ib++;
     }
     return *this;
 }
