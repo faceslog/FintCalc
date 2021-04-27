@@ -1,10 +1,11 @@
 //
-// Created by CHABANE Hugo et Adrien LESENECHAL on 17/03/2021.
+// Created by CHABANE Hugo et Adrien Lesénéchal on 17/03/2021.
 //
 
 #include "../includes/fint.h"
 #include <cmath>
 #include <stdexcept>
+#include <iostream>
 
 fint::fint(int_t n)
 {
@@ -35,6 +36,11 @@ fint::fint(const std::initializer_list<int_t>& lf, const std::initializer_list<m
 
 fint::fint(const fint& f) = default;
 fint::~fint() = default;
+
+std::map<int_t, mult_t> fint::get_dico() const
+{
+    return dico;
+}
 
 void fint::add_to_dico(int_t& a, const int_t& i)
 {
@@ -305,26 +311,19 @@ fint& fint::pow(unsigned int n)
     return *this;
 }
 
-std::ostream& operator<<(std::ostream& os, fint& a)
+std::ostream& operator<<(std::ostream& os, const fint& a)
 {
-    return os << a.to_string();
-}
+    if(a.dico.empty()) return os << '1' << std::flush;
 
-std::string fint::to_string()
-{
-
-    if(dico.empty()) return "1";
-
-    std::string str;
-    auto ia = dico.cbegin();
-    auto second_last = std::prev(dico.end(), 1);
+    auto ia = a.dico.cbegin();
+    auto second_last = std::prev(a.dico.end(), 1);
 
     for(; ia != second_last; ia++)
     {
-        str += std::to_string(ia->first) + '^' + std::to_string(ia->second) + '*';
+        os << ia->first << '^' << ia->second << '*' <<  std::flush;
     }
     // to avoid the '*' for the last element of the map and only if the map is not empty
-    str += std::to_string(ia->first) + '^' + std::to_string(ia->second);
+    os << ia->first << '^' << ia->second << std::flush;
 
-    return str;
+    return os;
 }
