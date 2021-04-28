@@ -113,7 +113,7 @@ void Controller::DrawResultLcm(fint &fint_a)
     try
     {
         fint fint_b(b);
-        ImGui::Text("b: %s", fint_b.to_string().c_str());
+        ImGui::Text("B: %s", fint_b.to_string().c_str());
         ImGui::InputScalar("B", ImGuiDataType_U32, &b);
         ImGui::BulletText("LCM(A,B) = %s", lcm(fint_a, fint_b).to_string().c_str());
     }
