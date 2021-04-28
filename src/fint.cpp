@@ -3,11 +3,11 @@
 //
 
 #include "../includes/fint.h"
-#include <cmath>
-#include <stdexcept>
 
 fint::fint(int_t n)
 {
+    if(n <= 0 ) throw std::domain_error("A fint cannot be created with a value less or equal to 0");
+
     add_to_dico(n, 2);
 
     for(int_t i{3}; i*i <= n; i+=2)

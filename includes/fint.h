@@ -3,6 +3,9 @@
 
 #include <limits>
 #include <map>
+#include <cmath>
+#include <stdexcept>
+#include <string>
 
 // choix d'un type entier non signé
 typedef unsigned long int int_t;
