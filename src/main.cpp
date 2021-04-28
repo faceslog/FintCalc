@@ -25,7 +25,16 @@ int main()
     std::cout << "============= Operator overloading =============" << std::endl;
     std::cout << "a == b : " << (a == b) << " & a != b : " << (a != b) << std::endl;
     std::cout << "a * b = " << (a*b) << std::endl;
-    std::cout << "a / b = " << (a/b) << std::endl;
+    if (b.divides(a))
+    {
+        std::cout << "a / b = " << (a/b) << std::endl;
+    }
+    else
+    {
+        fint c, d;
+        std::tie(c, d) = frac(std::make_pair(a, b));
+        std::cout << "a / b = (" << c << ") / (" << d << ")" << std::endl;
+    }
 
     uint32_t n;
     std::cout << "Entrez la puissance à utiliser : ";
