@@ -3,6 +3,9 @@
 
 #include <limits>
 #include <map>
+#include <cmath>
+#include <stdexcept>
+#include <string>
 
 // choix d'un type entier non signé
 typedef unsigned long int int_t;
@@ -39,17 +42,6 @@ public:
      * @exception std::invalid_argument if the two lists are not the same size.
      */
     fint(const std::initializer_list<int_t>& lf, const std::initializer_list<mult_t>& lm);
-    /**
-     * @brief Create a copy of a fint.
-     * 
-     * @param f The fint to copy.
-     */
-    fint(const fint& f);
-
-    /**
-     * @brief Destroy the fint object.
-     */
-    ~fint();
 
     /**
      * @brief Convert the fint to a natural number.
@@ -67,7 +59,6 @@ public:
      */
     bool divides(const fint& a) const;
 
-    // teste si this est premier
     /**
      * @brief Indicate whether the fint represents a prime number.
      * 
@@ -206,6 +197,11 @@ public:
      * @return The output stream.
      */
     friend std::ostream& operator<<(std::ostream& os, const fint& a);
+
+    /**
+     * @brief Destroy the fint object.
+     */
+    ~fint();
 
 private:
     /**
