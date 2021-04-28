@@ -2,6 +2,8 @@
 // don't listen to MS complains, we want cross-platform code
 //#define _CRT_SECURE_NO_DEPRECATE
 
+//C++
+#include <string>
 // SDL
 #include <glad/glad.h>
 #include <SDL.h>

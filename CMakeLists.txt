@@ -7,10 +7,10 @@ set(CMAKE_CXX_STANDARD 14)
 find_package(OpenGL REQUIRED)
 
 if (WIN32)
-    set(WHERE-IS-SDL "c:/programs/sdl/lib/x64")
-    set(WHERE-IS-SDL-HEADERS "c:/programs/sdl/include")
-    set(WHERE-IS-GLAD "c:/programs/glad/src/glad.c")
-    set(WHERE-IS-GLAD-HEADERS "c:/programs/glad/include")
+    set(WHERE-IS-SDL "C:/programs/sdl/lib/x64")
+    set(WHERE-IS-SDL-HEADERS "C:/programs/sdl/include")
+    set(WHERE-IS-GLAD "glad/src/glad.c")
+    set(WHERE-IS-GLAD-HEADERS "glad/include")
 endif()
 
 if (UNIX)
@@ -34,6 +34,7 @@ if (WIN32 OR APPLE)
         find_library(SDLmain SDL2main PATHS ${WHERE-IS-SDL})
     endif()
 
+    find_package(SDL2 REQUIRED)
     include_directories(
             "${WHERE-IS-SDL-HEADERS}"
     )

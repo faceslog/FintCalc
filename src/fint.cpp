@@ -3,8 +3,6 @@
 //
 
 #include "../includes/fint.h"
-#include <cmath>
-#include <stdexcept>
 
 fint::fint(int_t n)
 {
