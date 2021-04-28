@@ -148,9 +148,16 @@ void Controller::DrawResultDiv(fint &fint_a)
         ImGui::InputScalar("B", ImGuiDataType_U32, &b);
 
         if(fint_b.divides(fint_a))
+        {
             ImGui::BulletText("A / B = %s", (fint_a / fint_b).to_string().c_str());
+        }
         else
-            ImGui::BulletText("Cannot divide a per b");
+        {
+            fint fint_c, fint_d;
+            std::tie(fint_c, fint_d) = frac(std::make_pair(fint_a, fint_b));
+            ImGui::BulletText("A / B = (%s) / (%s)", fint_c.to_string().c_str(), fint_d.to_string().c_str());
+        }
+
     }
     catch(std::domain_error& error)
     {
