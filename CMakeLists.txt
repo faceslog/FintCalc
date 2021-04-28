@@ -33,8 +33,7 @@ if (WIN32 OR APPLE)
     if (WIN32)
         find_library(SDLmain SDL2main PATHS ${WHERE-IS-SDL})
     endif()
-
-    find_package(SDL2 REQUIRED)
+    
     include_directories(
             "${WHERE-IS-SDL-HEADERS}"
     )
