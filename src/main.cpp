@@ -1,6 +1,4 @@
-// UI realised with the help: https://retifrav.github.io/blog/2019/05/26/sdl-imgui/
-// don't listen to MS complains, we want cross-platform code
-//#define _CRT_SECURE_NO_DEPRECATE
+// UI realised with the help: https://github.com/retifrav/sdl-imgui-example
 
 //C++
 #include <string>
@@ -17,7 +15,7 @@
 static const int windowWidth = 500;
 static const int windowHeight = 300;
 
-int main()
+int main(int argc, char *argv[])
 {
     // initiate SDL
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
