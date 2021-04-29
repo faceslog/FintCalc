@@ -399,8 +399,9 @@ fint pow(const fint& a, unsigned int n)
 {
     if(n == 0)
     {
-        throw std::invalid_argument("trying to create a fint from 0");
+        return fint(1);
     }
+
     fint r;
     for(auto const& ia : a.dico)
     {
@@ -413,12 +414,16 @@ fint& fint::pow(unsigned int n)
 {
     if(n == 0)
     {
-        throw std::invalid_argument("trying to set a fint to the power of 0");
+        *this = fint(1);
     }
-    for(auto& i : dico)
+    else
     {
-        i.second *= n;
+        for(auto& i : dico)
+        {
+            i.second *= n;
+        }
     }
+
     return *this;
 }
 
