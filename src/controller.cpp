@@ -3,6 +3,12 @@
 //
 #include "../includes/controller.h"
 
+Controller::Controller()
+{
+    this->toggled = Buttons_None;
+    this->b = 1;
+}
+
 void Controller::DrawButtons()
 {
     ImGui::Spacing();
@@ -73,19 +79,13 @@ void Controller::DrawGui()
         ImGui::InputScalar("A", ImGuiDataType_U32, &a);
         ParseResult(fint_a);
 
-    } catch (std::domain_error& error)
+    } catch (const std::exception& error)
     {
         a = 1;
     }
 
     DrawButtons();
     ImGui::End();
-}
-
-Controller::Controller()
-{
-    this->toggled = Buttons_None;
-    this->b = 1;
 }
 
 void Controller::DrawResultIsPrime(fint &fint_a)
@@ -102,7 +102,7 @@ void Controller::DrawResultGcd(fint &fint_a)
         ImGui::InputScalar("B", ImGuiDataType_U32, &b);
         ImGui::BulletText("GCD(A,B) = %s", gcd(fint_a, fint_b).to_string().c_str());
     }
-    catch (std::domain_error& error)
+    catch (const std::exception& error)
     {
         b = 1;
     }
@@ -117,7 +117,7 @@ void Controller::DrawResultLcm(fint &fint_a)
         ImGui::InputScalar("B", ImGuiDataType_U32, &b);
         ImGui::BulletText("LCM(A,B) = %s", lcm(fint_a, fint_b).to_string().c_str());
     }
-    catch (std::domain_error& error)
+    catch (const std::exception& error)
     {
         b = 1;
     }
@@ -133,7 +133,7 @@ void Controller::DrawResultMult(fint &fint_a)
         ImGui::InputScalar("B", ImGuiDataType_U32, &b);
         ImGui::BulletText("A * B = %s", (fint_a * fint_b).to_string().c_str());
     }
-    catch (std::domain_error& error)
+    catch (const std::exception& error)
     {
         b = 1;
     }
@@ -159,7 +159,7 @@ void Controller::DrawResultDiv(fint &fint_a)
         }
 
     }
-    catch(std::domain_error& error)
+    catch(const std::exception& error)
     {
         b = 1;
     }
@@ -173,11 +173,10 @@ void Controller::DrawResultPow(fint &fint_a)
         ImGui::InputScalar("B", ImGuiDataType_U32, &b);
         ImGui::BulletText("A^b = %s", fint_a.pow(b).to_string().c_str());
     }
-    catch (std::domain_error& error)
+    catch (const std::exception& error)
     {
         b = 1;
     }
 }
-
 
 Controller::~Controller() = default;
