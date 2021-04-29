@@ -7,7 +7,7 @@
 #include <stdexcept>
 #include <string>
 
-// choix d'un type entier non signé
+// choix dun type entier non signé
 typedef unsigned long int int_t;
 typedef unsigned long int mult_t;
 
@@ -166,19 +166,15 @@ public:
 
     /**
      * @brief Create a copy of a fint to a given power.
-     * 
      * @param a The fint.
      * @param n The power.
      * @return A fint representing the given fint to the given power.
-     * @exception std::invalid_argument if the power is 0.
      */
     friend fint pow(const fint& a, unsigned int n);
     /**
      * @brief Set the fint to a given power.
-     * 
      * @param n The power.
      * @return A reference to the object itself.
-     * @exception std::invalid_argument if the power is 0.
      */
     fint& pow(unsigned int n);
 

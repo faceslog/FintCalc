@@ -1,5 +1,3 @@
-// UI realised with the help: https://github.com/retifrav/sdl-imgui-example
-
 //C++
 #include <string>
 // SDL
