@@ -1,5 +1,5 @@
 //
-// Created by CHABANE Hugo et Adrien LESENECHAL on 17/03/2021.
+// Created by faceslog and Derugon on 17/03/2021.
 //
 
 #include "../includes/fint.h"

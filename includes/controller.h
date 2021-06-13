@@ -1,5 +1,6 @@
 //
-// Created by CHABANE Hugo on 27/04/2021.
+//
+// Created by faceslog and Derugon on 17/03/2021.
 //
 
 #ifndef FINTCALC_CONTROLLER_H

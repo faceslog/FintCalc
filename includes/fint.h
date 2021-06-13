@@ -1,3 +1,7 @@
+//
+// Created by faceslog and Derugon on 17/03/2021.
+//
+
 #ifndef FINT_H
 #define FINT_H
 
