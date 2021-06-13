@@ -30,3 +30,7 @@ By default, it will build a `Debug` configuration, to switch to `Release` type: 
 
 When you will run the .exe it might say that it needs the SDL2.dll, just copy it next to the executable from `C:/programs/sdl/lib/x64/SDL2.dll`
 
+
+![Alt text](./screenshots/Screen-Linux.png "Linux Version")
+![Alt text](./screenshots/Screen-Windows.png "Win Version")
+
