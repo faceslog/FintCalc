@@ -34,3 +34,6 @@ When you will run the .exe it might say that it needs the SDL2.dll, just copy it
 ![Alt text](./screenshots/Screen-Linux.png "Linux Version")
 ![Alt text](./screenshots/Screen-Windows.png "Win Version")
 
+## License
+
+Licensed under the *EUPL-1.2-or-later*. See `LICENSE` for more information.
